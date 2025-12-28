@@ -26,10 +26,14 @@ ChartJS.register(
   Legend
 );
 
-// FIX: Added transports to ensure connection works even with strict firewalls
-const socket = io("http://localhost:5000", {
+// --- START DEPLOYMENT CHANGE ---
+// Use environment variable for production, fallback to localhost for development
+const BASE_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
+const socket = io(BASE_URL, {
   transports: ["websocket", "polling"],
 });
+// --- END DEPLOYMENT CHANGE ---
 
 function App() {
   const dispatch = useDispatch();
@@ -39,13 +43,11 @@ function App() {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   useEffect(() => {
-    // Only try to listen for transactions if we are logged in
     if (isLoggedIn) {
       socket.on("connect", () => setIsConnected(true));
       socket.on("disconnect", () => setIsConnected(false));
       socket.on("new-transaction", (data) => dispatch(addTransaction(data)));
 
-      // Check if already connected
       if (socket.connected) setIsConnected(true);
     }
     return () => {
@@ -58,10 +60,10 @@ function App() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/login",
-        loginData
-      );
+      // --- START DEPLOYMENT CHANGE ---
+      const res = await axios.post(`${BASE_URL}/api/login`, loginData);
+      // --- END DEPLOYMENT CHANGE ---
+
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
         setIsLoggedIn(true);
@@ -71,6 +73,7 @@ function App() {
     }
   };
 
+  // ... (rest of your component code remains exactly the same)
   if (!isLoggedIn) {
     return (
       <div
