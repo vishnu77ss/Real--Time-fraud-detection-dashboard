@@ -19,29 +19,22 @@ _Visualizing AI-generated risk scores using Redux and Chart.js._
 - **Real-Time Streaming:** Leveraging **Socket.io** for sub-second data updates.
 - **AI Analysis:** Every transaction is analyzed by **Google Gemini AI** to provide a risk score and reasoning.
 - **Global State Management:** Uses **Redux Toolkit** to synchronize live data across charts and tables.
-- **Secure Access:** Enterprise-grade **JWT Authentication** and password hashing with **Bcrypt.js**.
-- **Data Persistence:** Optimized for **MongoDB Atlas** for historical trend analysis.
+- **Containerized:** Fully **Dockerized** using Docker Compose for consistent deployment.
+- **Secure Access:** Enterprise-grade **JWT Authentication** for protected manager-level access.
 
 ## 🛠️ Tech Stack
 
 - **Frontend:** React.js, Redux Toolkit, Chart.js, Lucide Icons.
 - **Backend:** Node.js, Express.js, Socket.io, JWT.
-- **Database:** MongoDB Atlas (Certified).
+- **Database:** MongoDB Atlas (Associate Developer Certified).
 - **AI Engine:** Google Generative AI (Gemini 1.5 Flash).
 
 ## 📦 Installation & Setup
 
-1. **Clone the repository**
-2. **Server Setup:**
-   - Navigate to `/server`
-   - Run `npm install`
-   - Create a `.env` file with your `MONGO_URI`, `GEMINI_API_KEY`, and `JWT_SECRET`.
-   - Start with `npx nodemon index.js`
-3. **Client Setup:**
-   - Navigate to `/client`
-   - Run `npm install`
-   - Start with `npm start`
+### Option 1: Using Docker (Recommended)
 
----
+Ensure you have **Docker Desktop** running, then run:
 
-**Developed by Mediboina Vishnu Murthy** _MERN Stack Developer & MongoDB Certified Associate Developer_
+```bash
+docker-compose up --build
+```
