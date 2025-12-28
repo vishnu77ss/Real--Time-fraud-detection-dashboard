@@ -4,6 +4,20 @@
 
 ---
 
+## 🌐 Live Deployment
+
+Experience the application in production:
+
+- **🚀 Live Dashboard:** [View on Vercel](https://real-time-fraud-detec-git-16ecfb-vishnumurthy441-2988s-projects.vercel.app/)
+- **⚙️ Backend API:** [Check Render Status](https://real-time-fraud-detection-dashboard-aptl.onrender.com)
+
+> **🔑 Manager Credentials:**
+>
+> - **Email:** `manager@store.com`
+> - **Password:** `password123`
+
+---
+
 ## 📺 Project Preview
 
 ![Live Dashboard](./dashboard-main.png)
@@ -22,12 +36,16 @@ _Visualizing AI-generated risk scores using Redux and Chart.js._
 - **Containerized:** Fully **Dockerized** using Docker Compose for consistent deployment.
 - **Secure Access:** Enterprise-grade **JWT Authentication** for protected manager-level access.
 
+---
+
 ## 🛠️ Tech Stack
 
 - **Frontend:** React.js, Redux Toolkit, Chart.js, Lucide Icons.
 - **Backend:** Node.js, Express.js, Socket.io, JWT.
 - **Database:** MongoDB Atlas (Associate Developer Certified).
 - **AI Engine:** Google Generative AI (Gemini 1.5 Flash).
+
+---
 
 ## 📦 Installation & Setup
 
