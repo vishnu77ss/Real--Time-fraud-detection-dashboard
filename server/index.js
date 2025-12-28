@@ -10,12 +10,13 @@ const jwt = require("jsonwebtoken");
 const app = express();
 const server = http.createServer(app);
 
-// FIX: Updated CORS to allow any local connection during development
+// Use a more robust CORS setup for cloud deployment
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "*", // Allows your Vercel frontend to connect
     methods: ["GET", "POST"],
   },
+  connectionStateRecovery: {}, // Helps maintain connection on mobile/slow networks
 });
 
 const PORT = process.env.PORT || 5000;
@@ -26,6 +27,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 app.use(cors());
 app.use(express.json());
 
+// MongoDB connection with error handling
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Successfully connected to MongoDB Atlas!"))
@@ -58,6 +60,7 @@ async function analyzeTransaction(tx) {
   }
 }
 
+// Transaction generator
 setInterval(async () => {
   const transaction = {
     id: Math.floor(Math.random() * 1000000),
@@ -72,5 +75,10 @@ setInterval(async () => {
   io.emit("new-transaction", fullData);
   console.log("Sent live transaction:", fullData);
 }, 10000);
+
+// Root route for Render "Health Check"
+app.get("/", (req, res) => {
+  res.send("Fraud Guard API is running...");
+});
 
 server.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
